@@ -5,6 +5,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "dev": "nodemon --watch src --exec tsx src/api/server.ts",
+    "build": "tsc",
+    "start": "node dist/server.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "contract:emit": "prisma contract emit",
     "postinstall": "prisma skills sync || exit 0"
@@ -16,17 +19,20 @@
     "@prisma/orm-postgres": "^8.0.0-rc.8",
     "cors": "^2.8.6",
     "dotenv": "^17.4.2",
-    "express": "^5.2.1"
+    "express": "^5.2.1",
+    "morgan": "^1.12.0"
   },
   "devDependencies": {
     "@prisma/cli-engine": "^0.2.3",
     "@types/cors": "^2.8.19",
     "@types/express": "^5.0.6",
+    "@types/morgan": "^1.9.10",
     "@types/node": "^26.2.0",
     "nodemon": "^3.1.14",
     "prettier": "3.9.6",
     "prisma": "^8.0.0-rc.10",
     "ts-node": "^10.9.2",
+    "tsx": "^4.23.13",
     "typescript": "^7.0.2"
   }
 }
