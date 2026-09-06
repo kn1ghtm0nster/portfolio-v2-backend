@@ -34,3 +34,13 @@ export const getUserByIdHandler = async (req: Request, res: Response) => {
   }
   res.status(200).json(user);
 };
+
+export const deleteUserHandler = async (req: Request, res: Response) => {
+  const { id } = req.params;
+  const user = await getUserById(Number(id));
+  if (!user) {
+    return res.status(404).json({ message: 'user not found' });
+  }
+  await deleteUser(Number(id));
+  res.status(200).json({ message: 'user deleted' });
+};
