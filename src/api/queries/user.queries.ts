@@ -27,6 +27,12 @@ export const getUserById = async (id: number) => {
   }).first();
 };
 
+export const getUserByUsername = async (username: string) => {
+  return await db.orm.public.User.where({
+    username,
+  }).first();
+};
+
 export const deleteUser = async (id: number) => {
   return await db.orm.public.User.where({
     id,
