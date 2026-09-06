@@ -348,6 +348,11 @@
                   "columns": [
                     "email"
                   ]
+                },
+                {
+                  "columns": [
+                    "username"
+                  ]
                 }
               ]
             }
@@ -357,7 +362,7 @@
         "kind": "postgres-schema"
       }
     },
-    "storageHash": "6ac3ddcdef1d031c6715d4ff41db152b5ebfad4b1901a7a611148fb1fb66c827"
+    "storageHash": "129cfa8e3ba517934344045b9880288a4854a305afa57f7c58eb36ccad1b2728"
   },
   "execution": {
     "executionHash": "b5b7d446dba231dede9b3b955020dd601ec7757aaa0551510fa4a90ffd6e9359",
