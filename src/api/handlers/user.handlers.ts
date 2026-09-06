@@ -21,3 +21,12 @@ export const createUserHandler = async (req: Request, res: Response) => {
   const newUser = await createUser(email, name, username);
   res.status(201).json(newUser);
 };
+
+export const getUserByIdHandler = async (req: Request, res: Response) => {
+  const { id } = req.params;
+  const user = await getUserById(Number(id));
+  if (!user) {
+    return res.status(404).json({ message: 'User not found' });
+  }
+  res.status(200).json(user);
+};
