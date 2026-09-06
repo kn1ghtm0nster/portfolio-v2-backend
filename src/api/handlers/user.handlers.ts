@@ -4,6 +4,7 @@ import {
   createUser,
   getUserById,
   getUserByUsername,
+  getUserByEmail,
   deleteUser,
 } from '../queries/user.queries';
 
@@ -14,9 +15,12 @@ export const getAllUsersHandler = async (req: Request, res: Response) => {
 
 export const createUserHandler = async (req: Request, res: Response) => {
   const { email, name, username } = req.body;
-  const existingUser = await getUserByUsername(username);
-  if (existingUser) {
-    return res.status(400).json({ message: 'username is already taken' });
+  const existingUsername = await getUserByUsername(username);
+  const existingEmail = await getUserByEmail(email);
+  if (existingUsername || existingEmail) {
+    return res
+      .status(400)
+      .json({ message: 'username or email is already taken' });
   }
   const newUser = await createUser(email, name, username);
   res.status(201).json(newUser);
