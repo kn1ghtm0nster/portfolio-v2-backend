@@ -39,6 +39,21 @@ export const getUserByEmail = async (email: string) => {
   }).first();
 };
 
+export const updateUser = async (
+  id: number,
+  email: string,
+  name: string,
+  username: string,
+) => {
+  return await db.orm.public.User.where({
+    id,
+  }).update({
+    email,
+    name,
+    username,
+  });
+};
+
 export const deleteUser = async (id: number) => {
   return await db.orm.public.User.where({
     id,

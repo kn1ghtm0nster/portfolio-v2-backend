@@ -5,6 +5,7 @@ import {
   getUserById,
   getUserByUsername,
   getUserByEmail,
+  updateUser,
   deleteUser,
 } from '../queries/user.queries';
 
@@ -30,9 +31,23 @@ export const getUserByIdHandler = async (req: Request, res: Response) => {
   const { id } = req.params;
   const user = await getUserById(Number(id));
   if (!user) {
-    return res.status(404).json({ message: 'User not found' });
+    return res.status(404).json({ message: 'user not found' });
   }
   res.status(200).json(user);
+};
+
+export const updateUserHandler = async (req: Request, res: Response) => {
+  const { id } = req.params;
+  const { email, name, username } = req.body;
+  const user = await getUserById(Number(id));
+  if (!user) {
+    return res.status(404).json({ message: 'user not found' });
+  }
+  if (!email || !name || !username) {
+    return res.status(400).json({ message: 'missing required fields' });
+  }
+  const updatedUser = await updateUser(Number(id), email, name, username);
+  res.status(200).json(updatedUser);
 };
 
 export const deleteUserHandler = async (req: Request, res: Response) => {
